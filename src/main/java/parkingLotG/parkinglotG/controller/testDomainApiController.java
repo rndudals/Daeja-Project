@@ -24,7 +24,7 @@ public class testDomainApiController {
 
     @RequestMapping("/api")
     public String func() throws IOException, ParseException {
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/20/");
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/50/");
         urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));
@@ -83,6 +83,39 @@ public class testDomainApiController {
             tdrepository.save(testDomain);
         }
 
+        return sb.toString(); // 문자열로 변환
+    }
+    @RequestMapping("/apiTest") // api호출
+    public String func1() throws IOException, ParseException {
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/50/");
+        urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
+        urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
+        urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));
+        urlBuilder.append("/" + URLEncoder.encode("1", "UTF-8"));
+        urlBuilder.append("/" + URLEncoder.encode("100", "UTF-8"));
+        urlBuilder.append("/" + URLEncoder.encode("20220301", "UTF-8"));
+
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+
+        if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8")); // UTF-8로 인코딩 설정
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8")); // UTF-8로 인코딩 설정
+        }
+
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        System.out.println(sb);
         return sb.toString(); // 문자열로 변환
     }
 }
