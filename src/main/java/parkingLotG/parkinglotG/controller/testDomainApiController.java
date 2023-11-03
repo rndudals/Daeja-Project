@@ -22,7 +22,7 @@ public class testDomainApiController {
     @Autowired
     private testDomainRepository tdrepository;
 
-    @RequestMapping("/api")
+    @RequestMapping(value="/api",produces="application/json;charset=utf-8")
     public String func() throws IOException, ParseException {
         StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/5/");
         urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
@@ -63,7 +63,7 @@ public class testDomainApiController {
             JSONObject parkingData = (JSONObject) obj;
 
             String PARKING_CODE = (String) parkingData.get("PARKING_CODE");
-            //String PARKING_NAME = (String) parkingData.get("PARKING_NAME");
+            String PARKING_NAME = (String) parkingData.get("PARKING_NAME");
             Double CAPACITY = (Double) parkingData.get("CAPACITY");
             Double CUR_PARKING = (Double) parkingData.get("CUR_PARKING");
             Double LAT = (Double)parkingData.get("LAT");
@@ -73,7 +73,7 @@ public class testDomainApiController {
             TestDomain testDomain = new TestDomain();
 
             testDomain.setParkingCode(PARKING_CODE);
-            //testDomain.setParkingName(PARKING_NAME);
+            testDomain.setParkingName(PARKING_NAME);
             testDomain.setCapacity(CAPACITY);
             testDomain.setCurParking(CUR_PARKING);
             testDomain.setLat(LAT);
