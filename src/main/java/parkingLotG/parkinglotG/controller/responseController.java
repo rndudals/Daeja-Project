@@ -19,7 +19,7 @@ import java.util.Optional;
 public class responseController {
     @Autowired
     private testDomainRepository repository;
-    @GetMapping(value = "/response/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/response", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<TestDomain> userData() {
         List<TestDomain> testDomains = repository.findAll();
