@@ -19,16 +19,18 @@ public class TestDomain {
     private double curParking;
     private double lat;
     private double lng;
+    private String color;
     public TestDomain() {}
 
 
 
-    public TestDomain(String parkingCode, String parkingName, double capacity, double curParking, double lat, double lng) {
+    public TestDomain(String parkingCode, String parkingName, double capacity, double curParking, double lat, double lng, String color) {
         this.parkingCode=parkingCode;
         this.parkingName=parkingName;
         this.capacity=capacity;
         this.curParking=curParking;
         this.lat=lat;
         this.lng=lng;
+        this.color=color;
     }
 }

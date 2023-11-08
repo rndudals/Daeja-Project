@@ -24,7 +24,7 @@ public class testDomainApiController {
 
     @RequestMapping(value="/api",produces="application/json;charset=utf-8")
     public String func() throws IOException, ParseException {
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/1000/");
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/3/");
         urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));
@@ -78,6 +78,18 @@ public class testDomainApiController {
             testDomain.setCurParking(CUR_PARKING);
             testDomain.setLat(LAT);
             testDomain.setLng(LNG);
+            String color="null";
+            if(CUR_PARKING/CAPACITY<0.3){
+                color="G";
+            }
+            else if(CUR_PARKING/CAPACITY<0.6){
+                color="Y";
+            }
+            else{
+                color="R";
+            }
+
+            testDomain.setColor(color);
 
             // JPA를 사용하여 데이터베이스에 저장
             tdrepository.save(testDomain);
@@ -87,7 +99,7 @@ public class testDomainApiController {
     }
     @RequestMapping("/apiTest") // api호출
     public String func1() throws IOException, ParseException {
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/50/");
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/5/");
         urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));
