@@ -24,27 +24,28 @@ public class responseController {
     @GetMapping(value = "/response", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<TestDomain> userData() {
-        List<TestDomain> testDomains = repository.customQuery();
+        List<TestDomain> testDomains = repository.selectGroupByQueryList();
         TestDomain testDomain = new TestDomain("123","hello", 20,20,20,20);
         return testDomains;
     }
 
-    @GetMapping(value = "/response/one", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/response/all", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Optional<TestDomain> userData1() {
-
-        Optional<TestDomain> testDomain = repository.findById(746L);
-
-        return testDomain;
+    public List<TestDomain> userData1() {
+        List<TestDomain> testDomains = repository.findAll();
+        TestDomain testDomain = new TestDomain("123","hello", 20,20,20,20);
+        return testDomains;
     }
-
     //동적으로 조회하기
-    @GetMapping(value = "/response/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @GetMapping(value = "/response/{parking_code}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Optional<TestDomain> userData1(@PathVariable Long id) {
-        Optional<TestDomain> testDomain = repository.findById(id);
+    public Optional<TestDomain> userData2(@PathVariable String parking_code) {
+        Optional<TestDomain> testDomain = repository.selectGroupByQueryOne(parking_code);
         return testDomain;
     }
+
+
 }
 
 
