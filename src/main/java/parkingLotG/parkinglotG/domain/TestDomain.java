@@ -23,8 +23,7 @@ public class TestDomain {
 
 
 
-    public TestDomain(int id, String parkingCode, String parkingName, double capacity, double curParking, double lat, double lng) {
-        this.id = id;
+    public TestDomain(String parkingCode, String parkingName, double capacity, double curParking, double lat, double lng) {
         this.parkingCode=parkingCode;
         this.parkingName=parkingName;
         this.capacity=capacity;

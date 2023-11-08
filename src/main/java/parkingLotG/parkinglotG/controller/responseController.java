@@ -19,12 +19,13 @@ import java.util.Optional;
 public class responseController {
     @Autowired
     private testDomainRepository repository;
+
+
     @GetMapping(value = "/response", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<TestDomain> userData() {
-        List<TestDomain> testDomains = repository.findAll();
-        TestDomain testDomain = new TestDomain(1,"123","hello", 20,20,20,20);
-
+        List<TestDomain> testDomains = repository.customQuery();
+        TestDomain testDomain = new TestDomain("123","hello", 20,20,20,20);
         return testDomains;
     }
 
