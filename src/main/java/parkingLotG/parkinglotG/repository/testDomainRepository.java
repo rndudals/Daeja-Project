@@ -36,4 +36,7 @@ public interface testDomainRepository extends JpaRepository<TestDomain,Long> {
             "GROUP BY parking_code "
             , nativeQuery = true)
     Optional<TestDomain> selectGroupByQueryOne(@Param("parking_code") String parking_code);
+
+
+
 }
