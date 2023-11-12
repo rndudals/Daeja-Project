@@ -9,7 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface nearByLocationRepository extends JpaRepository<TestDomain,Long> {
-    @Query(value = "SELECT *, " +
+    @Query(value = "SELECT id,parking_name, parking_code, SUM(capacity) as capacity, cur_parking, lat, lng," +"CASE " +
+            "WHEN cur_parking/SUM(capacity) < 0.3 THEN 'G' " +
+            "WHEN cur_parking/SUM(capacity) BETWEEN 0.3 AND 0.6 THEN 'Y' " +
+            "ELSE 'R' " +
+            "END as color, " +
             "(6371 * acos(cos(radians(37.4685225)) * cos(radians(lat)) * cos(radians(lng) - radians(126.8943311)) + sin(radians(37.4685225)) * sin(radians(lat)))) AS distance " +
             "FROM test_domain " +
             "GROUP BY parking_code " +
@@ -19,7 +23,11 @@ public interface nearByLocationRepository extends JpaRepository<TestDomain,Long>
     List<TestDomain> staticFindNearbyLocations();
 
 
-    @Query(value = "SELECT *, " +
+    @Query(value = "SELECT id,parking_name, parking_code, SUM(capacity) as capacity, cur_parking, lat, lng," +"CASE " +
+            "WHEN cur_parking/SUM(capacity) < 0.3 THEN 'G' " +
+            "WHEN cur_parking/SUM(capacity) BETWEEN 0.3 AND 0.6 THEN 'Y' " +
+            "ELSE 'R' " +
+            "END as color, " +
             "(6371 * acos(cos(radians(:latitude)) * cos(radians(lat)) * cos(radians(lng) - radians(:longitude)) + sin(radians(:latitude)) * sin(radians(lat)))) AS distance " +
             "FROM test_domain " +
             "GROUP BY parking_code " +
