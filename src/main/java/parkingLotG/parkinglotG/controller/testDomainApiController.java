@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import parkingLotG.parkinglotG.domain.TestDomain;
-import parkingLotG.parkinglotG.repository.testDomainRepository;
+import parkingLotG.parkinglotG.repository.responseRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,11 +20,12 @@ import java.net.URLEncoder;
 @RestController
 public class testDomainApiController {
     @Autowired
-    private testDomainRepository tdrepository;
+    private responseRepository tdrepository;
 
     @RequestMapping(value="/api",produces="application/json;charset=utf-8")
     public String func() throws IOException, ParseException {
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/3/");
+        tdrepository.deleteAll();
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/1000/");
         urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));

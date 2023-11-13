@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository // 스프링빈에 등록 //
 
-public interface testDomainRepository extends JpaRepository<TestDomain,Long> {
+public interface responseRepository extends JpaRepository<TestDomain,Long> {
     @Query(value = "SELECT id,parking_name, parking_code, SUM(capacity) as capacity, cur_parking, lat, lng, " +
             "CASE " +
             "WHEN cur_parking/SUM(capacity) < 0.3 THEN 'G' " +

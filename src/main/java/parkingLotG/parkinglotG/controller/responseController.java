@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import parkingLotG.parkinglotG.domain.TestDomain;
-import parkingLotG.parkinglotG.repository.testDomainRepository;
+import parkingLotG.parkinglotG.repository.responseRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 public class responseController {
     @Autowired
-    private testDomainRepository repository;
+    private responseRepository repository;
 
 
     @GetMapping(value = "/response", produces = MediaType.APPLICATION_JSON_VALUE)
