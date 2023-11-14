@@ -13,10 +13,10 @@ public class TestDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String parkingCode;
+    private Integer parkingCode;
     private String parkingName;
-    private double capacity;
-    private double curParking;
+    private Integer capacity;
+    private Integer curParking;
     private double lat;
     private double lng;
     private String color;
@@ -24,7 +24,7 @@ public class TestDomain {
 
 
 
-    public TestDomain(String parkingCode, String parkingName, double capacity, double curParking, double lat, double lng, String color) {
+    public TestDomain(int parkingCode, String parkingName, int capacity, int curParking, double lat, double lng, String color) {
         this.parkingCode=parkingCode;
         this.parkingName=parkingName;
         this.capacity=capacity;
