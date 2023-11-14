@@ -25,7 +25,7 @@ public class testDomainApiController {
     @RequestMapping(value="/api",produces="application/json;charset=utf-8")
     public String func() throws IOException, ParseException {
         tdrepository.deleteAll();
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/5/");
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/1000/");
         urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));
@@ -76,6 +76,49 @@ public class testDomainApiController {
             String OPERATION_RULE_NM = (String) parkingData.get("OPERATION_RULE_NM");
             String TEL = (String) parkingData.get("TEL");
 
+            // 위까지 성공
+
+
+            String CURRENT_PARKING_UPDATE_TIME = (String) parkingData.get("CURRENT_PARKING_UPDATE_TIME");
+            String PAY_NM = (String) parkingData.get("PAY_NM");
+            String NIGHT_FREE_OPEN_NM = (String) parkingData.get("NIGHT_FREE_OPEN_NM");
+            String WEEKDAY_BEGIN_TIME = (String) parkingData.get("WEEKDAY_BEGIN_TIME");
+            String WEEKDAY_END_TIME = (String) parkingData.get("WEEKDAY_END_TIME");
+            String WEEKEND_BEGIN_TIME = (String) parkingData.get("WEEKEND_BEGIN_TIME");
+            String WEEKEND_END_TIME = (String) parkingData.get("WEEKEND_END_TIME");
+            String HOLIDAY_BEGIN_TIME = (String) parkingData.get("HOLIDAY_BEGIN_TIME");
+            String HOLIDAY_END_TIME = (String) parkingData.get("HOLIDAY_END_TIME");
+            String SATURDAY_PAY_NM = (String) parkingData.get("SATURDAY_PAY_NM");
+            String HOLIDAY_PAY_NM = (String) parkingData.get("HOLIDAY_PAY_NM");
+            String fulltimeMonthlyStr = (String) parkingData.get("FULLTIME_MONTHLY");
+            Integer FULLTIME_MONTHLY = null;
+            if (fulltimeMonthlyStr != null && !fulltimeMonthlyStr.isEmpty()) {
+                try {
+                    FULLTIME_MONTHLY = Integer.parseInt(fulltimeMonthlyStr);
+                } catch (NumberFormatException e) {
+                    // 숫자로 변환할 수 없는 값이 들어왔을 때의 예외 처리
+                    // 예를 들어, 숫자 이외의 문자열이 입력된 경우
+                    // 이에 대한 대응 방법을 작성합니다.
+                }
+            }
+            //인티저로 변경
+            Double RATES = (Double) parkingData.get("RATES");
+            Double TIME_RATE = (Double) parkingData.get("TIME_RATE");
+            Double add_rates = (Double) parkingData.get("ADD_RATES");
+            String ADD_RATES = String.valueOf(add_rates);
+            Double add_time_rate = (Double)parkingData.get("ADD_TIME_RATE");
+            String ADD_TIME_RATE = String.valueOf(add_time_rate);
+            Double day_maximum = (Double) parkingData.get("DAY_MAXIMUM");
+            Integer DAY_MAXIMUM = Integer.parseInt(String.valueOf(Math.round(day_maximum)));
+            String SH_CO = (String) parkingData.get("SH_CO");
+            String SH_LINK = (String) parkingData.get("SH_LINK");
+            String queStatusString = (String) parkingData.get("QUE_STATUS");
+            boolean QUE_STATUS = Boolean.valueOf(queStatusString);
+            String shTypeString = (String) parkingData.get("SH_TYPE");
+            boolean SH_TYPE = Boolean.valueOf(shTypeString);
+
+
+
             // TestDomain 객체 생성
             TestDomain testDomain = new TestDomain();
 
@@ -104,6 +147,38 @@ public class testDomainApiController {
             testDomain.setParking_type_nm(PARKING_TYPE_NM);
             testDomain.setOperation_rule_nm(OPERATION_RULE_NM);
             testDomain.setTel(TEL);
+
+
+
+
+
+            testDomain.setQue_status(QUE_STATUS);
+            testDomain.setCurrentParkingUpdateTime(CURRENT_PARKING_UPDATE_TIME);
+            testDomain.setPay_nm(PAY_NM);
+            testDomain.setNight_free_open_nm(NIGHT_FREE_OPEN_NM);
+            testDomain.setWeekday_begin_time(WEEKDAY_BEGIN_TIME);
+            testDomain.setWeekday_end_time(WEEKDAY_END_TIME);
+            testDomain.setWeekend_begin_time(WEEKEND_BEGIN_TIME);
+            testDomain.setWeekend_end_time(WEEKEND_END_TIME);
+            testDomain.setHoliday_begin_time(HOLIDAY_BEGIN_TIME);
+            testDomain.setHoliday_end_time(HOLIDAY_END_TIME);
+            testDomain.setSaturday_pay_nm(SATURDAY_PAY_NM);
+            testDomain.setHoliday_pay_nm(HOLIDAY_PAY_NM);
+            testDomain.setFulltime_monthly(FULLTIME_MONTHLY);
+            testDomain.setRates(Integer.parseInt(String.valueOf(Math.round(RATES))));
+            testDomain.setTime_rate(Integer.parseInt(String.valueOf(Math.round(TIME_RATE))));
+            testDomain.setAdd_rates(ADD_RATES);
+            testDomain.setAdd_time_rate(ADD_TIME_RATE);
+            testDomain.setDay_maximum(DAY_MAXIMUM);
+            testDomain.setSh_co(SH_CO);
+            testDomain.setSh_link(SH_LINK);
+            testDomain.setSh_type(SH_TYPE);
+
+
+
+
+
+
             // JPA를 사용하여 데이터베이스에 저장
             tdrepository.save(testDomain);
         }
