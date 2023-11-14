@@ -5,37 +5,37 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import parkingLotG.parkinglotG.domain.TestDomain;
+import parkingLotG.parkinglotG.domain.ParkingInfo;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository // 스프링빈에 등록 //
 
-public interface responseRepository extends JpaRepository<TestDomain,Long> {
-    @Query(value = "SELECT id, parking_code,SUM(capacity) as capacity, cur_parking, lat, lng, parking_name, add_rates, add_time_rate, current_parking_update_time, day_maximum, fulltime_monthly, holiday_begin_time, holiday_end_time, holiday_pay_nm, night_free_open_nm, operation_rule_nm,  parking_addr, parking_type_nm, pay_nm, que_status, rates, saturday_pay_nm, sh_co, sh_link, sh_type, tel, time_rate, weekday_begin_time, weekday_end_time, weekend_begin_time, weekend_end_time, " +
+public interface responseRepository extends JpaRepository<ParkingInfo,Long> {
+    @Query (value = "SELECT id, PARKING_CODE, PARKING_NAME, PARKING_ADDR, PARKING_TYPE_NM, OPERATION_RULE_NM, TEL, QUE_STATUS, sum(CAPACITY) as CAPACITY, CUR_PARKING, CUR_PARKING_TIME, PAY_NM, NIGHT_FREE_OPEN_NM, WEEKDAY_BEGIN_TIME, WEEKDAY_END_TIME, WEEKEND_BEGIN_TIME, WEEKEND_END_TIME, HOLIDAY_BEGIN_TIME, HOLIDAY_END_TIME, SATURDAY_PAY_NM, HOLIDAY_PAY_NM, FULLTIME_MONTHLY, RATES, TIME_RATE, ADD_RATES, ADD_TIME_RATE, DAY_MAXIMUM, LAT, LNG, SH_CO, SH_LINK, SH_TYPE, " +
             "CASE " +
-            "WHEN cur_parking/SUM(capacity) < 0.3 THEN '많음' " +
-            "WHEN cur_parking/SUM(capacity) BETWEEN 0.3 AND 0.6 THEN '보통' " +
+            "WHEN CUR_PARKING/sum(CAPACITY) < 0.3 THEN '많음' " +
+            "WHEN CUR_PARKING/sum(CAPACITY) BETWEEN 0.3 AND 0.6 THEN '보통' " +
             "ELSE '적음' " +
-            "END as color " +
-            "FROM test_domain " +
-            "GROUP BY parking_code " +
-            "ORDER BY parking_code", nativeQuery = true)
+            "END as COLOR " +
+            "FROM Parkingtable " +
+            "GROUP BY PARKING_CODE " +
+            "ORDER BY PARKING_CODE", nativeQuery = true)
 
-    List<TestDomain> selectGroupByQueryList();
+    List<ParkingInfo> selectGroupByQueryList();
 
-    @Query(value = "SELECT id, parking_code,SUM(capacity) as capacity, cur_parking, lat, lng, parking_name, add_rates, add_time_rate, current_parking_update_time, day_maximum, fulltime_monthly, holiday_begin_time, holiday_end_time, holiday_pay_nm, night_free_open_nm, operation_rule_nm,  parking_addr, parking_type_nm, pay_nm, que_status, rates, saturday_pay_nm, sh_co, sh_link, sh_type, tel, time_rate, weekday_begin_time, weekday_end_time, weekend_begin_time, weekend_end_time, " +
+    @Query(value = "SELECT id, PARKING_CODE, PARKING_NAME, PARKING_ADDR, PARKING_TYPE_NM, OPERATION_RULE_NM, TEL, QUE_STATUS, sum(CAPACITY) as CAPACITY, CUR_PARKING, CUR_PARKING_TIME, PAY_NM, NIGHT_FREE_OPEN_NM, WEEKDAY_BEGIN_TIME, WEEKDAY_END_TIME, WEEKEND_BEGIN_TIME, WEEKEND_END_TIME, HOLIDAY_BEGIN_TIME, HOLIDAY_END_TIME, SATURDAY_PAY_NM, HOLIDAY_PAY_NM, FULLTIME_MONTHLY, RATES, TIME_RATE, ADD_RATES, ADD_TIME_RATE, DAY_MAXIMUM, LAT, LNG, SH_CO, SH_LINK, SH_TYPE, " +
             "CASE " +
-            "WHEN cur_parking/SUM(capacity) < 0.3 THEN '많음' " +
-            "WHEN cur_parking/SUM(capacity) BETWEEN 0.3 AND 0.6 THEN '보통' " +
+            "WHEN CUR_PARKING/sum(CAPACITY) < 0.3 THEN '많음' " +
+            "WHEN CUR_PARKING/sum(CAPACITY) BETWEEN 0.3 AND 0.6 THEN '보통' " +
             "ELSE '적음' " +
-            "END as color " +
-            "FROM test_domain " +
-            "WHERE parking_code = :parking_code " +
-            "GROUP BY parking_code "
+            "END as COLOR " +
+            "FROM Parkingtable " +
+            "WHERE PARKING_CODE = :PARKING_CODE " +
+            "GROUP BY PARKING_CODE "
             , nativeQuery = true)
-    Optional<TestDomain> selectGroupByQueryOne(@Param("parking_code") String parking_code);
+    Optional<ParkingInfo> selectGroupByQueryOne(@Param("PARKING_CODE") String PARKING_CODE);
 
 
 

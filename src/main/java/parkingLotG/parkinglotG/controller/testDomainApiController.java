@@ -7,7 +7,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import parkingLotG.parkinglotG.domain.TestDomain;
+import parkingLotG.parkinglotG.domain.ParkingInfo;
 import parkingLotG.parkinglotG.repository.responseRepository;
 
 import java.io.BufferedReader;
@@ -25,7 +25,7 @@ public class testDomainApiController {
     @RequestMapping(value="/api",produces="application/json;charset=utf-8")
     public String func() throws IOException, ParseException {
         tdrepository.deleteAll();
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/1000/");
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/3/");
         urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));
@@ -102,12 +102,18 @@ public class testDomainApiController {
                 }
             }
             //인티저로 변경
-            Double RATES = (Double) parkingData.get("RATES");
-            Double TIME_RATE = (Double) parkingData.get("TIME_RATE");
+            Double rates = (Double) parkingData.get("RATES");
+            String RATES = String.valueOf(rates);
+
+            Double time_rate = (Double) parkingData.get("TIME_RATE");
+            String TIME_RATE=String.valueOf(time_rate);
+
             Double add_rates = (Double) parkingData.get("ADD_RATES");
             String ADD_RATES = String.valueOf(add_rates);
+
             Double add_time_rate = (Double)parkingData.get("ADD_TIME_RATE");
             String ADD_TIME_RATE = String.valueOf(add_time_rate);
+
             Double day_maximum = (Double) parkingData.get("DAY_MAXIMUM");
             Integer DAY_MAXIMUM = Integer.parseInt(String.valueOf(Math.round(day_maximum)));
             String SH_CO = (String) parkingData.get("SH_CO");
@@ -120,14 +126,14 @@ public class testDomainApiController {
 
 
             // TestDomain 객체 생성
-            TestDomain testDomain = new TestDomain();
+            ParkingInfo testDomain = new ParkingInfo();
 
-            testDomain.setParkingCode(PARKING_CODE);
-            testDomain.setParkingName(PARKING_NAME);
-            testDomain.setCapacity(Integer.parseInt(String.valueOf(Math.round(CAPACITY))));
-            testDomain.setCurParking(Integer.parseInt(String.valueOf(Math.round(CUR_PARKING))));
-            testDomain.setLat(LAT);
-            testDomain.setLng(LNG);
+            testDomain.setPARKING_CODE(PARKING_CODE);
+            testDomain.setPARKING_NAME(PARKING_NAME);
+            testDomain.setCAPACITY(Integer.parseInt(String.valueOf(Math.round(CAPACITY))));
+            testDomain.setCUR_PARKING(Integer.parseInt(String.valueOf(Math.round(CUR_PARKING))));
+            testDomain.setLAT(LAT);
+            testDomain.setLNG(LNG);
             String color="null";
             if(CUR_PARKING/CAPACITY<0.3){
                 color="많음";
@@ -138,41 +144,41 @@ public class testDomainApiController {
             else{
                 color="적음";
             }
-            testDomain.setColor(color);
+            testDomain.setCOLOR(color);
 
 
 
             // 추가
-            testDomain.setParking_addr(PARKING_ADDR);
-            testDomain.setParking_type_nm(PARKING_TYPE_NM);
-            testDomain.setOperation_rule_nm(OPERATION_RULE_NM);
-            testDomain.setTel(TEL);
+            testDomain.setPARKING_ADDR(PARKING_ADDR);
+            testDomain.setPARKING_TYPE_NM(PARKING_TYPE_NM);
+            testDomain.setOPERATION_RULE_NM(OPERATION_RULE_NM);
+            testDomain.setTEL(TEL);
 
 
 
 
 
-            testDomain.setQue_status(QUE_STATUS);
-            testDomain.setCurrentParkingUpdateTime(CURRENT_PARKING_UPDATE_TIME);
-            testDomain.setPay_nm(PAY_NM);
-            testDomain.setNight_free_open_nm(NIGHT_FREE_OPEN_NM);
-            testDomain.setWeekday_begin_time(WEEKDAY_BEGIN_TIME);
-            testDomain.setWeekday_end_time(WEEKDAY_END_TIME);
-            testDomain.setWeekend_begin_time(WEEKEND_BEGIN_TIME);
-            testDomain.setWeekend_end_time(WEEKEND_END_TIME);
-            testDomain.setHoliday_begin_time(HOLIDAY_BEGIN_TIME);
-            testDomain.setHoliday_end_time(HOLIDAY_END_TIME);
-            testDomain.setSaturday_pay_nm(SATURDAY_PAY_NM);
-            testDomain.setHoliday_pay_nm(HOLIDAY_PAY_NM);
-            testDomain.setFulltime_monthly(FULLTIME_MONTHLY);
-            testDomain.setRates(Integer.parseInt(String.valueOf(Math.round(RATES))));
-            testDomain.setTime_rate(Integer.parseInt(String.valueOf(Math.round(TIME_RATE))));
-            testDomain.setAdd_rates(ADD_RATES);
-            testDomain.setAdd_time_rate(ADD_TIME_RATE);
-            testDomain.setDay_maximum(DAY_MAXIMUM);
-            testDomain.setSh_co(SH_CO);
-            testDomain.setSh_link(SH_LINK);
-            testDomain.setSh_type(SH_TYPE);
+            testDomain.setQUE_STATUS(QUE_STATUS);
+            testDomain.setCUR_PARKING_TIME(CURRENT_PARKING_UPDATE_TIME);
+            testDomain.setPAY_NM(PAY_NM);
+            testDomain.setNIGHT_FREE_OPEN_NM(NIGHT_FREE_OPEN_NM);
+            testDomain.setWEEKDAY_BEGIN_TIME(WEEKDAY_BEGIN_TIME);
+            testDomain.setWEEKDAY_END_TIME(WEEKDAY_END_TIME);
+            testDomain.setWEEKEND_BEGIN_TIME(WEEKEND_BEGIN_TIME);
+            testDomain.setWEEKEND_END_TIME(WEEKEND_END_TIME);
+            testDomain.setHOLIDAY_BEGIN_TIME(HOLIDAY_BEGIN_TIME);
+            testDomain.setHOLIDAY_END_TIME(HOLIDAY_END_TIME);
+            testDomain.setSATURDAY_PAY_NM(SATURDAY_PAY_NM);
+            testDomain.setHOLIDAY_PAY_NM(HOLIDAY_PAY_NM);
+            testDomain.setFULLTIME_MONTHLY(FULLTIME_MONTHLY);
+            testDomain.setRATES(RATES);
+            testDomain.setTIME_RATE(TIME_RATE);
+            testDomain.setADD_RATES(ADD_RATES);
+            testDomain.setADD_TIME_RATE(ADD_TIME_RATE);
+            testDomain.setDAY_MAXIMUM(DAY_MAXIMUM);
+            testDomain.setSH_CO(SH_CO);
+            testDomain.setSH_LINK(SH_LINK);
+            testDomain.setSH_TYPE(SH_TYPE);
 
 
 

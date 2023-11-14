@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import parkingLotG.parkinglotG.domain.TestDomain;
+import parkingLotG.parkinglotG.domain.ParkingInfo;
 import parkingLotG.parkinglotG.repository.responseRepository;
 
 import java.util.List;
@@ -23,15 +23,15 @@ public class responseController {
 
     @GetMapping(value = "/response", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<TestDomain> userData() {
-        List<TestDomain> testDomains = repository.selectGroupByQueryList();
+    public List<ParkingInfo> userData() {
+        List<ParkingInfo> testDomains = repository.selectGroupByQueryList();
         return testDomains;
     }
 
     @GetMapping(value = "/response/all", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<TestDomain> userData1() {
-        List<TestDomain> testDomains = repository.findAll();
+    public List<ParkingInfo> userData1() {
+        List<ParkingInfo> testDomains = repository.findAll();
         return testDomains;
     }
 
@@ -41,8 +41,8 @@ public class responseController {
 
     @GetMapping(value = "/response/{parking_code}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Optional<TestDomain> userData3(@PathVariable String parking_code) {
-        Optional<TestDomain> testDomain = repository.selectGroupByQueryOne(parking_code);
+    public Optional<ParkingInfo> userData3(@PathVariable String parking_code) {
+        Optional<ParkingInfo> testDomain = repository.selectGroupByQueryOne(parking_code);
         return testDomain;
     }
 
