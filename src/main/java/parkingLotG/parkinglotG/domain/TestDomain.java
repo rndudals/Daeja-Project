@@ -20,17 +20,38 @@ public class TestDomain {
     private double lat;
     private double lng;
     private String color;
+
+
+
+    //추가
+    private String parking_addr;
+    private String parking_type_nm;
+    private String operation_rule_nm;
+    private String tel;
+    private boolean que_status;
+    private String currentParkingUpdateTime;
+    private String pay_nm;
+    private String night_free_open_nm;
+    private String weekday_begin_time;
+    private String weekday_end_time;
+    private String weekend_begin_time;
+    private String weekend_end_time;
+    private String holiday_begin_time;
+    private String holiday_end_time;
+    private String saturday_pay_nm;
+    private String holiday_pay_nm;
+    private Integer fulltime_monthly;
+    private Integer rates;
+    private Integer time_rate;
+    private String add_rates;
+    private String add_time_rate;
+    private Integer day_maximum;
+    private String sh_co;
+    private String sh_link;
+    private boolean sh_type;
     public TestDomain() {}
 
 
 
-    public TestDomain(int parkingCode, String parkingName, int capacity, int curParking, double lat, double lng, String color) {
-        this.parkingCode=parkingCode;
-        this.parkingName=parkingName;
-        this.capacity=capacity;
-        this.curParking=curParking;
-        this.lat=lat;
-        this.lng=lng;
-        this.color=color;
-    }
+
 }

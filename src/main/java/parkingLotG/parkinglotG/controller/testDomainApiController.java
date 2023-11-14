@@ -70,6 +70,12 @@ public class testDomainApiController {
             Double LAT = (Double)parkingData.get("LAT");
             Double LNG = (Double)parkingData.get("LNG");
 
+            //추가
+            String PARKING_ADDR = (String) parkingData.get("PARKING_ADDR");
+            String PARKING_TYPE_NM = (String) parkingData.get("PARKING_TYPE_NM");
+            String OPERATION_RULE_NM = (String) parkingData.get("OPERATION_RULE_NM");
+            String TEL = (String) parkingData.get("TEL");
+
             // TestDomain 객체 생성
             TestDomain testDomain = new TestDomain();
 
@@ -81,17 +87,23 @@ public class testDomainApiController {
             testDomain.setLng(LNG);
             String color="null";
             if(CUR_PARKING/CAPACITY<0.3){
-                color="G";
+                color="많음";
             }
             else if(CUR_PARKING/CAPACITY<0.6){
-                color="Y";
+                color="보통";
             }
             else{
-                color="R";
+                color="적음";
             }
-
             testDomain.setColor(color);
 
+
+
+            // 추가
+            testDomain.setParking_addr(PARKING_ADDR);
+            testDomain.setParking_type_nm(PARKING_TYPE_NM);
+            testDomain.setOperation_rule_nm(OPERATION_RULE_NM);
+            testDomain.setTel(TEL);
             // JPA를 사용하여 데이터베이스에 저장
             tdrepository.save(testDomain);
         }
