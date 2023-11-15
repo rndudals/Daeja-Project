@@ -71,7 +71,7 @@ public class testDomainApiController {
             Double LNG = (Double)parkingData.get("LNG");
 
             //추가
-            String PARKING_ADDR = (String) parkingData.get("PARKING_ADDR");
+            String PARKING_ADDR = (String) parkingData.get("ADDR");
             String PARKING_TYPE_NM = (String) parkingData.get("PARKING_TYPE_NM");
             String OPERATION_RULE_NM = (String) parkingData.get("OPERATION_RULE_NM");
             String TEL = (String) parkingData.get("TEL");
@@ -79,7 +79,7 @@ public class testDomainApiController {
             // 위까지 성공
 
 
-            String CURRENT_PARKING_UPDATE_TIME = (String) parkingData.get("CURRENT_PARKING_UPDATE_TIME");
+            String CURRENT_PARKING_UPDATE_TIME = (String) parkingData.get("CUR_PARKING_TIME");
             String PAY_NM = (String) parkingData.get("PAY_NM");
             String NIGHT_FREE_OPEN_NM = (String) parkingData.get("NIGHT_FREE_OPEN_NM");
             String WEEKDAY_BEGIN_TIME = (String) parkingData.get("WEEKDAY_BEGIN_TIME");
