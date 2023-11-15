@@ -25,7 +25,7 @@ public class testDomainApiController {
     @RequestMapping(value="/api",produces="application/json;charset=utf-8")
     public String func() throws IOException, ParseException {
         tdrepository.deleteAll();
-        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/1973/");
+        StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/1/1000/");
         urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
         urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));
