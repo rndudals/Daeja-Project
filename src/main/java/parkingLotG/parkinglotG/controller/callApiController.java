@@ -18,7 +18,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 @RestController
-public class testDomainApiController {
+public class callApiController {
     @Autowired
     private responseRepository tdrepository;
 
@@ -53,7 +53,6 @@ public class testDomainApiController {
         }
         rd.close();
         conn.disconnect();
-        System.out.println(sb);
 
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject = (JSONObject) jsonParser.parse(sb.toString());
