@@ -19,7 +19,7 @@ public interface nearByLocationRepository extends JpaRepository<ParkingInfo,Long
             "GROUP BY PARKING_CODE " +
             "HAVING distance <= 3 " +
             "ORDER BY distance " +
-            "LIMIT 0, 100", nativeQuery = true)
+            "LIMIT 0, 4", nativeQuery = true)
     List<ParkingInfo> staticFindNearbyLocations();
 
 
@@ -34,7 +34,7 @@ public interface nearByLocationRepository extends JpaRepository<ParkingInfo,Long
             "GROUP BY PARKING_CODE " +
             "HAVING distance <= 3 " +
             "ORDER BY distance " +
-            "LIMIT 0, 100", nativeQuery = true)
+            "LIMIT 0, 4", nativeQuery = true)
     List<ParkingInfo> findNearbyLocations(@Param("latitude") Double latitude, @Param("longitude") Double longitude);
 
 

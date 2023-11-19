@@ -25,8 +25,8 @@ public class callApiController {
     @RequestMapping(value="/api",produces="application/json;charset=utf-8")
     public String func() throws IOException, ParseException {
         tdrepository.deleteAll();
-        for(int i=1;i<4;i=i+2) {
-            StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/"+i+"/"+(i+1)+"/");
+        for (int i = 1; i < 1000; i = i + 975) {
+            StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088/657843584a726e3933394f4376434e/json/GetParkingInfo/"+i+"/"+(i+974)+"/");
             urlBuilder.append("/" + URLEncoder.encode("657843584a726e3933394f4376434e", "UTF-8"));
             urlBuilder.append("/" + URLEncoder.encode("json", "UTF-8"));
             urlBuilder.append("/" + URLEncoder.encode("CardSubwayStatsNew", "UTF-8"));
@@ -179,6 +179,8 @@ public class callApiController {
             }
 
         }
+        //ParkingInfo dankook= new ParkingInfo(1,"단국대학교 죽전캠퍼스 주차빌딩 1", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "PARKING_TYPE_NM", "OPERATION_RULE_NM", )
+
         return "OK"; // 문자열로 변환
     }
     @RequestMapping("/apiTest") // api호출
