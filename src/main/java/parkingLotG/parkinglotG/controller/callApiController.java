@@ -16,6 +16,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 @RestController
 public class callApiController {
@@ -179,7 +182,58 @@ public class callApiController {
             }
 
         }
-        //ParkingInfo dankook= new ParkingInfo(1,"단국대학교 죽전캠퍼스 주차빌딩 1", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "PARKING_TYPE_NM", "OPERATION_RULE_NM", )
+        // 현재 시간을 가져옵니다.
+        Date currentDate = new Date();
+
+        // 출력할 형식을 지정합니다.
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = dateFormat.format(currentDate);
+        // Random 객체 생성
+        Random random = new Random();
+        // 정수형 랜덤 값 출력 (0 이상부터)
+        int randomNumber0 = random.nextInt(157);
+        ParkingInfo dankook= new ParkingInfo(0,"단국대학교 죽전캠퍼스 주차빌딩 1", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 156, randomNumber0, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.32036865101858,127.124970592852, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook);
+
+        int randomNumber1 = random.nextInt(77);
+        ParkingInfo dankook1= new ParkingInfo(1,"단국대학교 죽전캠퍼스 주차장10", "경기 용인시 수지구 죽전동 산 46-2", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 76, randomNumber1, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.31977371980491,	127.12520652760476, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook1);
+
+        int randomNumber2 = random.nextInt(81);
+        ParkingInfo dankook2= new ParkingInfo(2,"단국대학교 죽전캠퍼스 주차장9", "경기 용인시 수지구 죽전동 산 47", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 80, randomNumber2, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.31967375608254,	127.12600737528392, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook);
+
+        int randomNumber3 = random.nextInt(96);
+        ParkingInfo dankook3= new ParkingInfo(3,"단국대학교 죽전캠퍼스 주차장4", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 95, randomNumber3, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.31933331047667,	127.12838727290409, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook3);
+
+        int randomNumber4 = random.nextInt(121);
+        ParkingInfo dankook4= new ParkingInfo(4,"단국대학교 죽전캠퍼스 주차장1", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 120, randomNumber4, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.31940610221102,	127.13183963969811, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook4);
+
+        int randomNumber5 = random.nextInt(87);
+        ParkingInfo dankook5= new ParkingInfo(5,"단국대학교 죽전캠퍼스 주차장5", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 86, randomNumber5, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.321426558249776,	127.12990264064867, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook5);
+
+        int randomNumber6 = random.nextInt(51);
+        ParkingInfo dankook6= new ParkingInfo(6,"단국대학교 죽전캠퍼스 주차장8", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 50, randomNumber6, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.322031801113695,	127.1284821211098, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook6);
+
+        int randomNumber7 = random.nextInt(43);
+        ParkingInfo dankook7= new ParkingInfo(7,"단국대학교 죽전캠퍼스 주차장", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 42, randomNumber7, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.322113687901506,	127.12774891460344, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook7);
+
+        int randomNumber8 = random.nextInt(82);
+        ParkingInfo dankook8= new ParkingInfo(8,"단국대학교 죽전캠퍼스 주차장6", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 81, randomNumber8, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료", 1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.322871500761224,	127.12687017342562, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook8);
+
+        int randomNumber9 = random.nextInt(92);
+        ParkingInfo dankook9= new ParkingInfo(9,"단국대학교 기숙사 주차장", "경기 용인시 기흥구 마북로247번길 109", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 91, randomNumber9, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.31520329827193,	127.12725212742195, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook9);
+
+        int randomNumber10 = random.nextInt(202);
+        ParkingInfo dankook10= new ParkingInfo(10,"단국대학교 ICT관 신설주차장", "경기 용인시 수지구 죽전로 152", "단국대학교 주차장", "시간제 주차장", "031-1234-1234", true, 201, randomNumber10, formattedDate, "유료", "야간 개방","0000", "0000", "0000", "0000","0000","0000", "유료", "유료",1, "RATES", "TIME_RATE", "ADD_RATES", "ADD_TIME_RATE", 1, 37.32342462093351,	127.12781318708828, "SH_CO","SH_LINK", false, "많음");
+        tdrepository.save(dankook10);
 
         return "OK"; // 문자열로 변환
     }
