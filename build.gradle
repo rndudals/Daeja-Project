@@ -26,7 +26,11 @@ dependencies {
 
 	dependencies {
 		implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+		//Swagger
+		implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 	}
+
+
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0' // Jackson 버전을 프로젝트에 맞게 지정
 	implementation 'mysql:mysql-connector-java:8.0.26'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
