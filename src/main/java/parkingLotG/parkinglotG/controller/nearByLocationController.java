@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import parkingLotG.parkinglotG.domain.ParkingInfo;
-import parkingLotG.parkinglotG.repository.nearByLocationRepository;
+import parkingLotG.parkinglotG.service.nearByLocationService;
 
 import java.util.List;
 
@@ -17,20 +17,22 @@ import java.util.List;
 
 
 public class nearByLocationController {
+    private final nearByLocationService locationService; // 서비스 추가
+
     @Autowired
-    private nearByLocationRepository repository;
+    public nearByLocationController(nearByLocationService locationService) {
+        this.locationService = locationService;
+    }
 
     @GetMapping(value = "/near", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<ParkingInfo> userData() {
-        List<ParkingInfo> testDomains = repository.staticFindNearbyLocations();
-        return testDomains;
-    }
-    @GetMapping(value = "/near/{lat}/{lng}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ParkingInfo> userData2(@PathVariable Double lat, @PathVariable Double lng) {
-        List<ParkingInfo> testDomains = repository.findNearbyLocations(lat, lng);
-        return testDomains;
+        return locationService.getNearbyParkingInfo();
     }
 
+    @GetMapping(value = "/near/{lat}/{lng}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ParkingInfo> userData2(@PathVariable Double lat, @PathVariable Double lng) {
+        return locationService.getNearbyParkingInfo(lat, lng);
+    }
 
 }

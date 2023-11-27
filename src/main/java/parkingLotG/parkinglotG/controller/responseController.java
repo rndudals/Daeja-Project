@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import parkingLotG.parkinglotG.domain.ParkingInfo;
 import parkingLotG.parkinglotG.repository.responseRepository;
+import parkingLotG.parkinglotG.service.ResponseService;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,35 +18,30 @@ import java.util.Optional;
 @Slf4j
 @RestController
 public class responseController {
-    @Autowired
-    private responseRepository repository;
+    private final ResponseService responseService;
 
+    @Autowired
+    public responseController(ResponseService responseService) {
+        this.responseService = responseService;
+    }
 
     @GetMapping(value = "/response", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<ParkingInfo> userData() {
-        List<ParkingInfo> testDomains = repository.selectGroupByQueryList();
-        return testDomains;
+        return responseService.getGroupedParkingInfoList();
     }
 
     @GetMapping(value = "/response/all", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<ParkingInfo> userData1() {
-        List<ParkingInfo> testDomains = repository.findAll();
-        return testDomains;
+        return responseService.getAllParkingInfoList();
     }
-
-
-
-    //동적으로 조회하기
 
     @GetMapping(value = "/response/{parking_code}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Optional<ParkingInfo> userData3(@PathVariable String parking_code) {
-        Optional<ParkingInfo> testDomain = repository.selectGroupByQueryOne(parking_code);
-        return testDomain;
+        return responseService.getParkingInfoByCode(parking_code);
     }
-
 
 }
 
